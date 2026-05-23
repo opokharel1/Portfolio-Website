@@ -19,7 +19,6 @@ function Contact() {
 
     try {
       const response = await fetch(
-        // "http://localhost:5000/api/contact",
         "https://portfolio-website-xqks.onrender.com/api/contact",
         {
           method: "POST",
@@ -30,37 +29,22 @@ function Contact() {
         }
       )
 
-      if (!response.ok) {
-        throw new Error("Server response failed")
-      }
-
       const data = await response.json()
 
       console.log(data)
 
-      // if (data.success) {
-      //   alert("Message sent!")
-      // } else {
-      //   alert("Failed to send message")
-      // }
+      if (response.ok && data.success) {
+        alert("Message sent!")
 
-      // console.log(response)
+        setFormData({
+          name: "",
+          email: "",
+          message: "",
+        })
+      } else {
+        alert("Failed to send message")
+      }
 
-      // const text = await response.text()
-
-      // console.log(text)
-
-      // alert(text)
-
-      console.log(data)
-
-      alert("Message sent!")
-
-      setFormData({
-        name: "",
-        email: "",
-        message: "",
-      })
     } catch (error) {
       console.error(error)
       alert("Something went wrong")
