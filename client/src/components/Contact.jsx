@@ -19,7 +19,8 @@ function Contact() {
 
     try {
       const response = await fetch(
-        "http://localhost:5000/api/contact",
+        // "http://localhost:5000/api/contact",
+        "https://portfolio-website-xqks.onrender.com/api/contact",
         {
           method: "POST",
           headers: {
@@ -33,11 +34,19 @@ function Contact() {
 
       console.log(data)
 
-      if (data.success) {
-        alert("Message sent!")
-      } else {
-        alert("Failed to send message")
-      }
+      // if (data.success) {
+      //   alert("Message sent!")
+      // } else {
+      //   alert("Failed to send message")
+      // }
+
+      console.log(response)
+
+      const text = await response.text()
+
+      console.log(text)
+
+      alert(text)
 
       setFormData({
         name: "",
