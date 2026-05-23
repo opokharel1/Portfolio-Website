@@ -30,6 +30,10 @@ function Contact() {
         }
       )
 
+      if (!response.ok) {
+        throw new Error("Server response failed")
+      }
+
       const data = await response.json()
 
       console.log(data)
@@ -40,13 +44,17 @@ function Contact() {
       //   alert("Failed to send message")
       // }
 
-      console.log(response)
+      // console.log(response)
 
-      const text = await response.text()
+      // const text = await response.text()
 
-      console.log(text)
+      // console.log(text)
 
-      alert(text)
+      // alert(text)
+
+      console.log(data)
+
+      alert("Message sent!")
 
       setFormData({
         name: "",
