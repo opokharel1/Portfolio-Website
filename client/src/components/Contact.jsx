@@ -1,4 +1,5 @@
 import { useState } from "react"
+import toast from "react-hot-toast"
 
 function Contact() {
   const [formData, setFormData] = useState({
@@ -34,7 +35,8 @@ function Contact() {
       console.log(data)
 
       if (response.ok && data.success) {
-        alert("Message sent!")
+        // alert("Message sent!")
+        toast.success("Message sent successfully!")
 
         setFormData({
           name: "",
@@ -42,12 +44,14 @@ function Contact() {
           message: "",
         })
       } else {
-        alert("Failed to send message")
+        // alert("Failed to send message")
+        toast.error("Failed to send message")
       }
 
     } catch (error) {
       console.error(error)
-      alert("Something went wrong")
+      // alert("Something went wrong")
+      toast.error("Something went wrong")
     }
   }
 
