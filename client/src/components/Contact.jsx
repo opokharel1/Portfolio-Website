@@ -8,6 +8,8 @@ function Contact() {
     message: "",
   })
 
+  const [isLoading, setIsLoading] = useState(false)
+
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -17,6 +19,7 @@ function Contact() {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+    setIsLoading(true)
 
     try {
       const response = await fetch(
@@ -52,6 +55,8 @@ function Contact() {
       console.error(error)
       // alert("Something went wrong")
       toast.error("Something went wrong")
+    } finally {
+      setIsLoading(false)
     }
   }
 
@@ -97,9 +102,21 @@ function Contact() {
 
         <button
           type="submit"
-          className="bg-cyan-500 text-black py-3 rounded font-semibold"
-        >
-          Send Message
+          disabled={isLoading}
+          // className="bg-cyan-500 text-black py-3 rounded font-semibold disabled:opacity-50 disabled:cursor-not-allowed hover:bg-cyan-400"
+          className={`py-3 rounded font-semibold ${isLoading
+            ? "bg-gray-500 cursor-not-allowed"
+            : "bg-cyan-500 text-black hover:bg-cyan-400"
+            }`}        >
+          {/* {isLoading ? "Sending..." : "Send Message"} */}
+          {isLoading ? (
+            <div className="flex items-center justify-center gap-2">
+              <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+              Sending...
+            </div>
+          ) : (
+            "Send Message"
+          )}
         </button>
       </form>
     </section>
