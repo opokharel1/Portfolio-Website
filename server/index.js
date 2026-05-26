@@ -41,6 +41,14 @@ app.post("/api/contact", async (req, res) => {
 
     const { name, email, message } = req.body
 
+    // Validate required fields
+    if (!name || !email || !message) {
+      return res.status(400).json({
+        success: false,
+        message: "All fields are required",
+      })
+    }
+
     const newMessage = new Contact({
       name,
       email,
@@ -57,11 +65,12 @@ app.post("/api/contact", async (req, res) => {
   } catch (error) {
 
     console.log("SERVER ERROR:")
-    console.log(error)
+    console.log(error.message)
+    console.log(error.stack)
 
     res.status(500).json({
       success: false,
-      message: "Server error",
+      message: error.message || "Server error",
     })
   }
 })

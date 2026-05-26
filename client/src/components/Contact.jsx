@@ -19,6 +19,13 @@ function Contact() {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+    
+    // Client-side validation
+    if (!formData.name.trim() || !formData.email.trim() || !formData.message.trim()) {
+      toast.error("Please fill in all fields")
+      return
+    }
+
     setIsLoading(true)
 
     try {
@@ -48,7 +55,7 @@ function Contact() {
         })
       } else {
         // alert("Failed to send message")
-        toast.error("Failed to send message")
+        toast.error(data.message || "Failed to send message")
       }
 
     } catch (error) {
