@@ -1,14 +1,33 @@
-import Navbar from "./components/Navbar"
-import Hero from "./components/Hero"
-import Contact from "./components/Contact"
+import { BrowserRouter, Routes, Route } from "react-router-dom"
+
+import Home from "./pages/Home"
+import Embedded from "./pages/Embedded"
+import Software from "./pages/Software"
+import Data from "./pages/Data"
+import Writing from "./pages/Writing"
 
 function App() {
+
   return (
-    <div className="min-h-screen bg-black text-white">
-      <Navbar />
-      <Hero />
-      <Contact />
-    </div>
+
+    <BrowserRouter>
+
+      <Routes>
+
+        <Route path="/" element={<Home />} />
+
+        <Route path="/embedded" element={<Embedded />} />
+
+        <Route path="/software" element={<Software />} />
+
+        <Route path="/data" element={<Data />} />
+
+        <Route path="/writing" element={<Writing />} />
+
+      </Routes>
+
+    </BrowserRouter>
+
   )
 }
 

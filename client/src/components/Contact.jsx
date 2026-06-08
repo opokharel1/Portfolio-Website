@@ -113,7 +113,7 @@ function Contact() {
           // className="bg-cyan-500 text-black py-3 rounded font-semibold disabled:opacity-50 disabled:cursor-not-allowed hover:bg-cyan-400"
           className={`py-3 rounded font-semibold ${isLoading
             ? "bg-gray-500 cursor-not-allowed"
-            : "bg-cyan-500 text-black hover:bg-cyan-400"
+            : "bg-violet-300 text-black hover:bg-violet-200"
             }`}        >
           {/* {isLoading ? "Sending..." : "Send Message"} */}
           {isLoading ? (
